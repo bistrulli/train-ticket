@@ -37,7 +37,7 @@ services:
     image: ts/ts-ui-dashboard
     restart: always
     ports:
-      - 81
+      - 81:8080
     networks:
       - my-network
   
