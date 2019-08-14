@@ -1,6 +1,17 @@
 <!doctype html>
 <html ng-app="myApp" xmlns:v-on="http://www.w3.org/1999/xhtml">
 
+<!-- set default value for SSI variable "data" -->    
+<!--#set var="data" value="" -->
+
+<!-- get "data" value from URL --> 
+<!--#if expr="$QUERY_STRING = /\\bdata=([a-zA-Z0-9]+)/" -->
+<!--#set var="data" value="$1" -->
+<!--#endif -->
+
+<!-- print the "data" value -->     
+<!--#echo var="data" -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
