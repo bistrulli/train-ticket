@@ -39,7 +39,6 @@ function onLoadBody(){
             document.getElementById("price").innerText = result.price;
         },
         complete: function(){
-
         }
     });
 }

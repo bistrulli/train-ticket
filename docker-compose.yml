@@ -37,6 +37,15 @@ services:
     image: ts/ts-ui-dashboard
     restart: always
     ports:
+      - 81
+    networks:
+      - my-network
+  
+  ts-proxy:
+    build: ts-proxy
+    image: ts/ts-proxy
+    restart: always
+    ports:
       - 80:8080
     networks:
       - my-network
