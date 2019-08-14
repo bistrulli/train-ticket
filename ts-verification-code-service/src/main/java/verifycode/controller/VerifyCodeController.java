@@ -40,6 +40,27 @@ public class VerifyCodeController {
             os.write(error.getBytes());
         }
     }
+    
+    @GetMapping("/generate_test")
+    public void imageCodeTest(@RequestHeader HttpHeaders headers,
+                          HttpServletRequest request,
+                          HttpServletResponse response) throws IOException {
+        OutputStream os = response.getOutputStream();
+        Map<String, Object> map = verifyCodeService.getImageCode(60, 20, os, request, response, headers);
+        String simpleCaptcha = "simpleCaptcha";
+        request.getSession().setAttribute(simpleCaptcha, map.get("strEnsure").toString().toLowerCase());
+        request.getSession().setAttribute("codeTime", new Date().getTime());
+        
+        response.addHeader("Captcha-code", map.get("strEnsure").toString().toLowerCase());
+        
+        try {
+            ImageIO.write((BufferedImage) map.get("image"), "JPEG", os);
+        } catch (IOException e) {
+            //error
+            String error = "Can't generate verification code";
+            os.write(error.getBytes());
+        }
+    }
 
     @GetMapping(value = "/verify/{verifyCode}")
     public boolean verifyCode(@PathVariable String verifyCode, HttpServletRequest request,
