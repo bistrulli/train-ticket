@@ -41,7 +41,7 @@ public class VerifyCodeController {
         }
     }
     
-    @GetMapping("/generate_test")
+    @GetMapping("/generatein")
     public void imageCodeTest(@RequestHeader HttpHeaders headers,
                           HttpServletRequest request,
                           HttpServletResponse response) throws IOException {
